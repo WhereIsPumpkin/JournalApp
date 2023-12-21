@@ -10,6 +10,7 @@ import SwiftUI
 struct NewsListView: View {
     @EnvironmentObject var viewModel: NewsListViewModel
     
+    // MARK: - Body
     var body: some View {
         NavigationStack {
             Group {
@@ -19,48 +20,56 @@ struct NewsListView: View {
                     newsList
                 }
             }
-            .navigationBarTitle("News", displayMode: .inline)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    viewModel.showingAddNewsView = true
-                }) {
-                    Image(systemName: "plus")
-                }
-            )
+            .navigationBarTitle("Daily News 🗞️", displayMode: .inline)
+            .navigationBarItems( trailing: addNews )
             .sheet(isPresented: $viewModel.showingAddNewsView) {
                 AddNewsView()
             }
         }
     }
     
+    // MARK: - Private Views
+    private var addNews: some View {
+        Button(action: {
+            viewModel.showingAddNewsView = true
+        }) {
+            Image(systemName: "plus")
+        }
+    }
+    
     private var emptyStateView: some View {
-        Text("📰 No news yet! Click on the ➕ above to add some! 🚀")
-            .font(.headline)
-            .multilineTextAlignment(.center)
-            .padding()
+        VStack {
+            Image(systemName: "newspaper")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+                .foregroundColor(.gray)
+                .padding()
+            Text("No news yet!")
+                .font(.headline)
+                .foregroundColor(.secondary)
+        }
     }
     
     private var newsList: some View {
         List {
             ForEach($viewModel.news) { $newsItem in
-                VStack(alignment: .leading) {
-                    Text(newsItem.title)
-                        .font(.headline)
-                    Text(newsItem.description)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    HStack {
-                        Text(newsItem.category.rawValue)
-                            .font(.caption)
-                            .foregroundColor(.blue)
-                        Spacer()
-                        Text(viewModel.dateFormatter.string(from: newsItem.date))
-                            .font(.caption)
+                NewsCellView(newsItem: newsItem, viewModel: viewModel)
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            viewModel.deleteNews(at: newsItem.id)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        
+                        Button(action: {
+                            newsItem.isFavorite.toggle()
+                        }, label: {
+                            Label(newsItem.isFavorite ? "Unstar" : "Star", systemImage: newsItem.isFavorite ? "star.slash.fill" : "star")
+                        })
+                        .tint(.orange)
                     }
-                }
-                
             }
-            .onDelete(perform: viewModel.deleteNews)
             .onMove(perform: viewModel.moveNews)
         }
     }

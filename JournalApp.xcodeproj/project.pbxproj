@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		751B9C992B346C1600448310 /* NewsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B9C982B346C1600448310 /* NewsCellView.swift */; };
 		7528BCA02B33312D005F8ED2 /* JournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7528BC9F2B33312D005F8ED2 /* JournalApp.swift */; };
 		7528BCA42B33312E005F8ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7528BCA32B33312E005F8ED2 /* Assets.xcassets */; };
 		7528BCA72B33312E005F8ED2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7528BCA62B33312E005F8ED2 /* Preview Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		751B9C982B346C1600448310 /* NewsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellView.swift; sourceTree = "<group>"; };
 		7528BC9C2B33312D005F8ED2 /* JournalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JournalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7528BC9F2B33312D005F8ED2 /* JournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalApp.swift; sourceTree = "<group>"; };
 		7528BCA32B33312E005F8ED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		751B9C972B346C0900448310 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				751B9C982B346C1600448310 /* NewsCellView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7528BC932B33312D005F8ED2 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 				7528BCB22B333D89005F8ED2 /* App */,
 				7528BCB32B333D90005F8ED2 /* Model */,
 				7528BCBD2B3366EC005F8ED2 /* Screen */,
+				751B9C972B346C0900448310 /* View */,
 				7528BCA32B33312E005F8ED2 /* Assets.xcassets */,
 				7528BCA52B33312E005F8ED2 /* Preview Content */,
 			);
@@ -193,6 +204,7 @@
 				7528BCA02B33312D005F8ED2 /* JournalApp.swift in Sources */,
 				7528BCC02B33671F005F8ED2 /* NewsListView.swift in Sources */,
 				7528BCCB2B3375FB005F8ED2 /* AddNewsView.swift in Sources */,
+				751B9C992B346C1600448310 /* NewsCellView.swift in Sources */,
 				7528BCC22B3367B2005F8ED2 /* NewsListViewModel.swift in Sources */,
 				7528BCC82B336CD2005F8ED2 /* FavoriteView.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewsListViewModel: ObservableObject {
+final class NewsListViewModel: ObservableObject {
     // MARK: - NewsList Properties
     @Published var news: [NewsItem] = []
     @Published var showingAddNewsView = false
@@ -20,8 +20,10 @@ class NewsListViewModel: ObservableObject {
     @Published var date = Date()
     
     // MARK: - Methods
-    func deleteNews(at offsets: IndexSet) {
-        news.remove(atOffsets: offsets)
+    func deleteNews(at id: UUID) {
+        if let index = news.firstIndex(where: { $0.id == id }) {
+            news.remove(at: index)
+        }
     }
     
     func moveNews(from source: IndexSet, to destination: Int) {
@@ -33,8 +35,7 @@ class NewsListViewModel: ObservableObject {
             showingAlert = true
             return
         }
-        let newsItem = NewsItem(title: title, description: description, category: category)
-        news.append(newsItem)
+        news.append( NewsItem(title: title, description: description, category: category) )
         showingAddNewsView = false
         title = ""
         description = ""
